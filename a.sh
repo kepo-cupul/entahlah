@@ -1,7 +1,7 @@
 #!/bin/bash
 bash /1.sh
 
-git clone https://SanzGanzs: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@github.com/SanzGanzs/info-judul a
+git clone https://SanzGanzs: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@github.com/SanzGanzs/info-judul a
 cd a && npm i
 npm i -g pm2
 
