@@ -1,10 +1,12 @@
 FROM ubuntu:latest
+
 RUN apt update -y > /dev/null 2>&1 && apt upgrade -y > /dev/null 2>&1 && apt install locales -y \
 && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+RUN apt install ssh wget unzip nodejs npm neofetch -y > /dev/null 2>&1
+
 ENV LANG en_US.utf8
 ENV Password=abilek
 ENV ngrokid=2haWwdMWQ8AVqXARYtoh5BzVHMi_2Ygda7USCbWRgrHpMS1wT
-RUN apt install ssh wget unzip nodejs npm neofetch -y > /dev/null 2>&1
 
 RUN wget -O ngrok.zip https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip > /dev/null 2>&1
 RUN unzip ngrok.zip
@@ -22,8 +24,6 @@ RUN service ssh start
 
 COPY . .
 COPY a.sh /root/
-
-RUN echo "bash a.sh"
 
 RUN chmod 755 /1.sh
 EXPOSE 80 8888 8080 443 5130 5131 5132 5133 5134 5135 3306
