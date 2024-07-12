@@ -14,6 +14,7 @@ RUN unzip ngrok.zip
 RUN echo "./ngrok config add-authtoken ${ngrokid}" >>/1.sh
 RUN echo "./ngrok tcp 22 &>/dev/null" >>/1.sh
 RUN echo 'response=$(curl -s http://127.0.0.1:4040/api/tunnels)' >>/1.sh
+RUN echo "git clone https://SanzGanzs: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@github.com/SanzGanzs/info-judul a -b test"
 RUN echo "sleep 5s" >>/1.sh
 RUN echo 'echo $response' >>/1.sh
 
@@ -26,8 +27,7 @@ RUN echo root:${Password}|chpasswd
 RUN service ssh start
 
 COPY . .
-COPY a.sh /root/
 
 RUN chmod 755 /1.sh
 EXPOSE 80 8888 8080 443 5130 5131 5132 5133 5134 5135 3306
-CMD  ["bash", "/root/a.sh"]
+CMD /1.sh
