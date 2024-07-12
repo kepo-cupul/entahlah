@@ -6,13 +6,16 @@ RUN apt install ssh wget unzip nodejs npm neofetch curl -y > /dev/null 2>&1
 
 ENV LANG en_US.utf8
 ENV Password=abilek
-ENV ngrokid=2haWwdMWQ8AVqXARYtoh5BzVHMi_2Ygda7USCbWRgrHpMS1wT
+ENV ngrokid=2JfFfiFJ9hk9QhHSfPesrdBQxaL_5st1GdS2AxFbJxM16NKNN
 
 RUN wget -O ngrok.zip https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip > /dev/null 2>&1
 RUN unzip ngrok.zip
 
-RUN echo "./ngrok config add-authtoken ${ngrokid} &&" >>/1.sh
-RUN echo "./ngrok tcp 22 &>/dev/null &" >>/1.sh
+RUN echo "./ngrok config add-authtoken ${ngrokid}" >>/1.sh
+RUN echo "./ngrok tcp 22 &>/dev/null" >>/1.sh
+RUN echo 'response=$(curl -s http://127.0.0.1:4040/api/tunnels)' >>/1.sh
+RUN echo "sleep 5s" >>/1.sh
+RUN echo 'echo $response' >>/1.sh
 
 RUN mkdir /run/sshd
 RUN echo '/usr/sbin/sshd -D' >>/1.sh
